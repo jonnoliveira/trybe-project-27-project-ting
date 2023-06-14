@@ -50,7 +50,8 @@ def search_by_word(word, instance):
             {
                 "conteudo": [
                     {"linha": index + 1, "conteudo": linha}
-                    # enumerate retorna uma tupla e agora adiciona o conteúdo da linha
+                    # enumerate retorna uma tupla e agora adiciona
+                    # o conteúdo da linha
                     for index, linha in enumerate(item["linhas_do_arquivo"])
                     if word.lower() in linha.lower()
                 ]
