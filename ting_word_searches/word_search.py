@@ -36,4 +36,29 @@ def exists_word(word, instance):
 
 
 def search_by_word(word, instance):
-    """Aqui irá sua implementação"""
+    result = exists_word(word, instance)
+    occurrences = []
+
+    # verifica que não há ocorrência da palavra
+    if len(result) == 0:
+        return []
+
+    for i in range(instance.__len__()):
+        item = instance.search(i)
+
+        occurrences.append(
+            {
+                "conteudo": [
+                    {"linha": index + 1, "conteudo": linha}
+                    # enumerate retorna uma tupla e agora adiciona o conteúdo da linha
+                    for index, linha in enumerate(item["linhas_do_arquivo"])
+                    if word.lower() in linha.lower()
+                ]
+            }
+        )
+
+    # adiciona as novas ocorrências com o conteúdo ao resultado final
+    for i in range(len(result)):
+        result[i]["ocorrencias"] = occurrences[i]["conteudo"]
+
+    return result
